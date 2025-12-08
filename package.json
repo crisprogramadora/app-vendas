@@ -1,0 +1,15 @@
+{
+  "name": "app-vendas",
+  "version": "1.0.0",
+  "description": "Projeto criado para treinamento",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
