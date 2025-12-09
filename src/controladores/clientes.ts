@@ -17,17 +17,19 @@ export const listar = (req: Request, res: Response) => {
     return res.status(200).json(clientes)
 }
 
-export const clientesPorId = (req: Request, res: Response) => {
+export const detalhar = (req: Request, res: Response) => {
     const { id } = req.params
-    const cliente = clientes.find((cliente) => {
-        return cliente.id === Number(id)
+    
+    const cliente = clientes.find((item) => {
+        return item.id === Number(id)
     })
 
      if (!cliente) {
-        return res.send('Cliente não encontrado')
-    }
-    
-    return res.send(cliente)
+        return res.status(404).json({
+            mensagem: 'Cliente não encontrado'
+        })
+    }    
+    return res.status(200).json(cliente)
 }
 
 export const buscarClientesQuery = (req: Request, res: Response) => {
