@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { intermediario, intermediarioGeral } from "./intermediarios";
-import { buscarClientesQuery, detalhar, listar } from "./controladores/clientes";
+import { buscarClientesQuery, cadastrar, detalhar, listar } from "./controladores/clientes";
 
 const rotas = Router()
 
@@ -9,6 +9,8 @@ const rotas = Router()
 rotas.get('/clientes', listar)
 
 rotas.get('/clientes/:id', detalhar)
+
+rotas.post('/clientes', cadastrar)
 
 rotas.get('/clientes', buscarClientesQuery)
 

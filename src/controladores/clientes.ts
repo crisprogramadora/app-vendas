@@ -13,11 +13,11 @@ const clientes: TClientes []= [
     
 ]
 
-export const listar = (req: Request, res: Response) => {
+export function listar (req: Request, res: Response) {
     return res.status(200).json(clientes)
 }
 
-export const detalhar = (req: Request, res: Response) => {
+export function detalhar (req: Request, res: Response) {
     const { id } = req.params
     
     const cliente = clientes.find((item) => {
@@ -30,6 +30,18 @@ export const detalhar = (req: Request, res: Response) => {
         })
     }    
     return res.status(200).json(cliente)
+}
+
+export function cadastrar(req: Request, res: Response) {
+    const { nome } = req.body
+
+    const novoCliente = {
+        id: clientes.length + 1,
+        nome
+    }
+    clientes.push(novoCliente)
+
+    return res.status(201).json(novoCliente)
 }
 
 export const buscarClientesQuery = (req: Request, res: Response) => {
