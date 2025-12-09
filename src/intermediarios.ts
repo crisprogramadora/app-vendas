@@ -1,5 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
-
+import { NextFunction, Request, Response } from "express"
 
 export const intermediario = (req: Request, res: Response, next: NextFunction) => {
     console.log('Passei pelo intermediário')

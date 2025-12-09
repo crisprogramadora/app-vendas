@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import express = require('express')
 
 const clientes = [
     { id: 1, nome: 'Cliente A' },
@@ -6,18 +6,37 @@ const clientes = [
     { id: 3, nome: 'Cliente C' }
 ];
 
-export const listaClientes =  (req: Request, res: Response) => {
-    console.log(req.query);
-    return res.send('clientes localizados')
+export const listaClientes = (req: express.Request, res: express.Response) => {
+    console.log(clientes)
+    return res.send('Servidor online')
 }
 
-//     const cliente = clientes.find((cliente) => {
-//         return cliente.id === id
-//     })
+export const clientesPorId = (req: express.Request, res: express.Response) => {
+    const { id } = req.params
+    const cliente = clientes.find((cliente) => {
+        return cliente.id === Number(id)
+    })
 
-//     if (!cliente) {
-//     return res.send('Cliente não encontrado')
-//     }
+     if (!cliente) {
+        return res.send('Cliente não encontrado')
+    }
+    
+    return res.send(cliente)
+}
 
-//     return res.send(cliente)
-// }
+export const buscarClientesQuery = (req: express.Request, res: express.Response) => {
+    const { nome } = req.query
+// no postman colocar  /clientes/buscar?nome=Cliente A
+    if(!nome) {
+        return res.send('parâmetro não encontrado')
+    }
+
+    const cliente = clientes.find ((cliente) => {
+        return cliente.nome === nome
+    })
+
+    if (!cliente) {
+        return res.send('Cliente não encontrado')
+    } 
+    return res.send(cliente)
+}
